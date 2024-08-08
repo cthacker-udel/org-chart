@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es6", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "types": [],
+    "declaration": false,
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "files": [
+    "types/index.d.ts"
+    // List any additional files you need here, like tests if applicable
+  ],
+  "exclude": ["node_modules", "build"]
+}

@@ -16,9 +16,15 @@
   "jsdelivr": "build/d3-org-chart.min.js",
   "unpkg": "build/d3-org-chart.min.js",
   "exports": {
-    "umd": "./build/d3-org-chart.min.js",
-    "default": "./src/d3-org-chart.js",
-    "types": "./types/index.d.ts"
+    "import": {
+      "default": "./src/d3-org-chart.js",
+      "types": "./types/index.d.ts"
+    },
+    "require": {
+      "umd": "./build/d3-org-chart.min.js",
+      "default": "./src/d3-org-chart.js",
+      "types": "./types/index.d.ts"
+    }
   },
   "types": "types/index.d.ts",
   "jsnext:main": "index",

@@ -1,3 +1,5 @@
+# THIS IS A EDITED FORK OF https://github.com/bumbeishvili/d3-organization-chart.git
+
 [![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 # Highly customizable d3 based organization chart
@@ -13,9 +15,6 @@
 [Medium article about this project](https://bumbeishvili.medium.com/introducing-a-new-v3-version-of-the-org-chart-ca1b63320a4b)
 
 Highly customizable org chart built with d3 v7.
-
-
-
 
 ## Features
 
@@ -47,7 +46,6 @@ Highly customizable org chart built with d3 v7.
    </td>
 </tr>
 
-
 <tr>
   
    <td>
@@ -74,7 +72,6 @@ Collapse Node<img width=180  src="https://user-images.githubusercontent.com/6873
    </td>
 </tr>
 
-
 <tr>
   
    <td>
@@ -98,7 +95,6 @@ Change Layout<img width=180  src="https://user-images.githubusercontent.com/6873
      </a>
    </td>
 </tr>
-
 
 <tr>
    
@@ -124,8 +120,6 @@ Zoom in and out<img width=180  src="https://user-images.githubusercontent.com/68
    </td>
 </tr>
 
-
-
 <tr>
    
    <td>
@@ -149,8 +143,6 @@ Paging <img width=180  src="https://user-images.githubusercontent.com/6873202/20
      </a>
    </td>
 </tr>
-
-
 
 <tr>
    
@@ -178,7 +170,6 @@ Searching org chart <img width=180 src="https://user-images.githubusercontent.co
    
 </tr>
 
-
 <tr>
    
    <td>
@@ -205,24 +196,14 @@ Multi Root <img width=180 src="https://raw.githubusercontent.com/bumbeishvili/As
            </a>
    </td>
 
-
-   
 </tr>
 
-
-
-
-
 </table>
-
-
-
 
 ## Community Samples
 
 <table>
 <tr>
-
 
   <td>
      <a href="https://stackblitz.com/edit/js-bmyjfc?file=index.html">
@@ -233,9 +214,7 @@ Drag & Drop Nodes <img width=180 src="https://raw.githubusercontent.com/bumbeish
 </tr>
 </table>
 
-
 ## How to use
-
 
 Just copy this code and paste at - https://realtimehtml.com/
 
@@ -246,13 +225,11 @@ Just copy this code and paste at - https://realtimehtml.com/
 <div class="chart-container"></div>
 
 <script>
- var chart;
- d3
-  .csv(
-   "https://raw.githubusercontent.com/bumbeishvili/sample-data/main/org.csv"
-  )
-  .then((data) => {
-   chart = new d3.OrgChart().container(".chart-container").data(data).render();
+  var chart;
+  d3.csv(
+    "https://raw.githubusercontent.com/bumbeishvili/sample-data/main/org.csv"
+  ).then((data) => {
+    chart = new d3.OrgChart().container(".chart-container").data(data).render();
   });
 </script>
 ```
@@ -272,21 +249,20 @@ import { OrgChart } from 'd3-org-chart';
      .render();
 ```
 
-
-In general, we encourage to look into the source code to understand how it works. The chart code is basically a single class. At the top of the class, we have a state object called `attrs` which stores the state of the org chart and each single property is overridable by  the user.
-
+In general, we encourage to look into the source code to understand how it works. The chart code is basically a single class. At the top of the class, we have a state object called `attrs` which stores the state of the org chart and each single property is overridable by the user.
 
 For example, one of the property name inside `attrs` object is `duration`, which controls animation duration for chart, when expanding or collapsing nodes.
 
 If we want to get the value, we can either do
 
 ```javascript
-chart.getChartState().duration
+chart.getChartState().duration;
 ```
 
 or directly
+
 ```javascript
-chart.duration()
+chart.duration();
 ```
 
 `chart` in the above case is an instance of `OrgChart` class. We can get it using `new OrgChart()`
@@ -294,8 +270,9 @@ chart.duration()
 If we want to set property, we can pass argument to the same function and it will automatically set the value
 
 ```javascript
-chart.duration(3000)  // This will become very slow moving chart
+chart.duration(3000); // This will become very slow moving chart
 ```
+
 You can see list of all properties , their description of what each property does in the actual source code.
 
 https://github.com/bumbeishvili/org-chart/blob/5be7e0962e46013b3a95dd19f41f829c3c853d1f/src/d3-org-chart.js#L41
@@ -304,17 +281,14 @@ Be aware that they are chainable, so if we wanted to set multiple properties, we
 
 ```javascript
 const chart = new OrgChart()
-                    .data(ourData)
-                    .container(ourDomElementOrCssSelector)
-                    .duration(ourDuration)
-                    .render()
-
+  .data(ourData)
+  .container(ourDomElementOrCssSelector)
+  .duration(ourDuration)
+  .render();
 
 // We can keep chaining values in runtime
-chart.data(updatedData).render()
-
+chart.data(updatedData).render();
 ```
-
 
 Have you impressively customized an organizational chart and want to be featured on this page? Just email me at me@davidb.dev and include screenshot of your org chart and it will be featured on this page (dimensions of image should be 500 X 500).
 
@@ -340,7 +314,6 @@ Custom components & algorithms I used
 - [Curved edges - vertical](https://observablehq.com/@bumbeishvili/curved-edges-compacty-vertical)
 - [Curved edges - horizontal](https://observablehq.com/@bumbeishvili/curved-edges-compact-horizontal)
 - [Flextree Algorithm](https://github.com/Klortho/d3-flextree)
-
 
 ### Quick Docs
 
@@ -374,5 +347,3 @@ I am available for freelance data visualization work. Please [contact me](https:
 You can also [book data viz related consultation session](https://www.fiverr.com/share/4XxG21) with me.
 
 You might not need a consultation, but you want to appreciate the time and effort I am putting into this library, and if you correspond with an organization, you might also want to enjoy private QA about org chart over emails. In that case, you can support the org chart via [polar.sh/bumbeishvili](https://polar.sh/bumbeishvili/subscriptions)
-
-

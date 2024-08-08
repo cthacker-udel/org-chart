@@ -1,5 +1,5 @@
 {
-  "name": "d3-org-chart",
+  "name": "d3-org-chart-cthacker-fork",
   "version": "3.1.1",
   "module": "index",
   "description": "Highly customizable org chart, created with d3",
@@ -19,6 +19,7 @@
     "umd": "./build/d3-org-chart.min.js",
     "default": "./src/d3-org-chart.js"
   },
+  "types": "types/index.d.ts",
   "jsnext:main": "index",
   "bugs": {
     "url": "https://github.com/bumbeishvili/d3-organization-chart/issues"
@@ -32,11 +33,11 @@
     "start": "nodemon ",
     "_pretest": "rm -rf build && mkdir build && rollup -c --banner \"$(preamble)\"",
     "_test": "tape 'test/**/*-test.js'",
-    "_prepublish": "npm run test && uglifyjs build/d3-org-chart.js -c -m -o build/d3-org-chart.min.js",
+    "_prepublish": "npm run test && npx uglifyjs ./build/d3-org-chart.js -c -m -o build/d3-org-chart.min.js",
     "_postpublish": "zip -j build/d3-org-chart.zip -- LICENSE README.md build/d3-org-chart.js build/d3-org-chart.min.js",
     "pretest": "rm -rf build && mkdir build && rollup -g d3-selection:d3,d3-array:d3,d3-hierarchy:d3,d3-zoom:d3,d3-flextree:d3,d3-shape:d3,d3-group:d3  -f umd -n d3 -o build/d3-org-chart.js -- index.js",
     "test": "tape 'test/**/*-test.js'",
-    "prepublish": "npm run test && uglifyjs build/d3-org-chart.js -c -m -o build/d3-org-chart.min.js",
+    "prepublish": "npm run test && npx uglifyjs ./build/d3-org-chart.js -c -m -o build/d3-org-chart.min.js",
     "postpublish": "zip -j build/d3-org-chart.zip -- LICENSE README.md build/d3-org-chart.js build/d3-org-chart.min.js"
   },
   "devDependencies": {

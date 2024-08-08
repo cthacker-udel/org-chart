@@ -1,6 +1,6 @@
 {
   "name": "d3-org-chart-cthacker-fork",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "module": "index",
   "description": "Highly customizable org chart, created with d3",
   "keywords": [
@@ -17,7 +17,8 @@
   "unpkg": "build/d3-org-chart.min.js",
   "exports": {
     "umd": "./build/d3-org-chart.min.js",
-    "default": "./src/d3-org-chart.js"
+    "default": "./src/d3-org-chart.js",
+    "types": "./types/index.d.ts"
   },
   "types": "types/index.d.ts",
   "jsnext:main": "index",

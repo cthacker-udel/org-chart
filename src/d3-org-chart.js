@@ -73,7 +73,7 @@ export class OrgChart {
             onZoomStart: e => { }, // Callback for zoom & panning start
             onZoom: e => { }, // Callback for zoom & panning 
             onZoomEnd: e => { }, // Callback for zoom & panning end
-            onNodeClick: (d) => d, // Callback for node click
+            onNodeClick: (d, event) => d, // Callback for node click
             onExpandOrCollapse: (d) => d, // Callback for node expand or collapse
 
             /*
@@ -1036,7 +1036,7 @@ export class OrgChart {
                     return;
                 }
                 if (!data._pagingButton) {
-                    attrs.onNodeClick(node);
+                    attrs.onNodeClick(node, event);
                     return;
                 }
                 console.log('event fired, no handlers')
@@ -1070,7 +1070,7 @@ export class OrgChart {
         // Node update styles
         const nodeUpdate = nodeEnter
             .merge(nodesSelection)
-            .style("font", "12px sans-serif");
+            .style("font", attrs.defaultFont, "12px sans-serif");
 
         // Add foreignObject element inside rectangle
         const fo = nodeUpdate.patternify({
@@ -1467,7 +1467,7 @@ export class OrgChart {
         attrs.root = d3
             .stratify()
             .id((d) => attrs.nodeId(d))
-            .parentId(d => attrs.parentNodeId(d))(attrs.data.filter(d => hiddenNodesMap[d.id] !== true));
+            .parentId(d => attrs.parentNodeId(d))(attrs.data.filter(d => hiddenNodesMap[d.id] !== true && hiddenNodesMap[d.nodeId] !== true));
 
         attrs.root.each((node, i, arr) => {
             let _hierarchyHeight = node._hierarchyHeight || node.height

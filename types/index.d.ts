@@ -546,6 +546,97 @@ export class OrgChart<Datum> {
   }): this;
 
   /**
+   * Enables the drag and drop dependent on the node being selected
+   *
+   * @param node - An representation of a node within the chart
+   */
+  enableDragDrop(node: HierarchyNode<Datum>): this;
+
+  /**
+   * Specify the callback that fires when the user begins "dragging" on a node
+   *
+   * @param node - The node being dragged
+   * @param event - The drag event
+   */
+  onDragStart(node: HierarchyNode<Datum>, event: any): this;
+
+  /**
+   * Specify the callback that fires when the user is within the "drag" process
+   *
+   * @param node - The node currently being dragged
+   * @param event - The drag event
+   */
+  onDrag(node: HierarchyNode<Datum>, event: any): this;
+
+  /**
+   * Specify the callback that fires when the user finishes the "drag" process, and releases their mouse to initiate the "drop"
+   *
+   * @param node - The node that was dragged
+   * @param targetNode - The node that is receiving the "dropping" action from the dragged node
+   * @param dragEvent - The drag event
+   */
+  onDrop(
+    dragNode: HierarchyNode<Datum>,
+    targetNode: HierarchyNode<Datum>,
+    dragEvent: any
+  ): this;
+
+  /**
+   * Specify the callback that fires when the user drags a node over another node
+   *
+   * @param dragNode - The node being dragged
+   * @param targetNode - The node receiving the "dragover" event
+   * @param dragEvent  - The drag event
+   */
+  onDragTarget(
+    dragNode: HierarchyNode<Datum>,
+    targetNode: HierarchyNode<Datum>,
+    dragEvent: any
+  ): this;
+
+  /**
+   * Specify the callback for the "dragover" event for the target node
+   *
+   * @param dragNode - The node being dragged
+   * @param targetNode - The node that is losing the "dragover" event
+   * @param dragEvent - The drag event
+   */
+  outDragTarget(
+    dragNode: HierarchyNode<Datum>,
+    targetNode: HierarchyNode<Datum>,
+    dragEvent: any
+  ): this;
+
+  /**
+   * Whether or not to allow the drag to start
+   *
+   * @param node - The node about to be dragged
+   * @param dragEvent - The drag event
+   */
+  onDragFilter(node: HierarchyNode<Datum>, dragEvent: any): this;
+
+  /**
+   * Set the dragging node's className (defaults to 'dragging')
+   *
+   * @param classNameCallback - Callback that returns className of "dragging" nodes
+   */
+  draggingClass(classNameCallback: any): this;
+
+  /**
+   * Set the draggable node's className (defaults to 'draggable')
+   *
+   * @param classNameCallback - Callback that returns className of "draggable" nodes
+   */
+  draggableClass(classNameCallback: any): this;
+
+  /**
+   * Set the droppable node's className
+   *
+   * @param classNameCallback - Callback that returns className of "droppable" nodes
+   */
+  droppableClass(classNameCallback: any): this;
+
+  /**
    * Load Paging Nodes
    * @param node
    */

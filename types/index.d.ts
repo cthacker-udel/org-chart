@@ -574,7 +574,7 @@ export class OrgChart<Datum> {
    *
    * @param node - Callback that provides a boolean
    */
-  enableDragDrop(booleanCallback: any): this;
+  enableDragDrop: () => boolean;
 
   /**
    * Specify the callback that fires when the user begins "dragging" on a node
@@ -582,7 +582,7 @@ export class OrgChart<Datum> {
    * @param node - The node being dragged
    * @param event - The drag event
    */
-  onDragStart(_callback: DragCallback<Datum, void>): this;
+  onDragStart: (node: HierarchyNode<Datum>, event: any) => void;
 
   /**
    * Specify the callback that fires when the user is within the "drag" process
@@ -590,7 +590,7 @@ export class OrgChart<Datum> {
    * @param node - The node currently being dragged
    * @param event - The drag event
    */
-  onDrag(_callback: DragCallback<Datum, void>): this;
+  onDrag: (node: HierarchyNode<Datum>, event: any) => void;
 
   /**
    * Specify the callback that fires when the user finishes the "drag" process, and releases their mouse to initiate the "drop"
@@ -599,7 +599,11 @@ export class OrgChart<Datum> {
    * @param targetNode - The node that is receiving the "dropping" action from the dragged node
    * @param dragEvent - The drag event
    */
-  onDrop(_callback: DragCallbackTarget<Datum, void>): this;
+  onDrop: (
+    node: HierarchyNode<Datum>,
+    targetNode: HierarchyNode<Datum>,
+    event: any
+  ) => void;
 
   /**
    * Specify the callback that fires when the user drags a node over another node
@@ -608,7 +612,11 @@ export class OrgChart<Datum> {
    * @param targetNode - The node receiving the "dragover" event
    * @param dragEvent  - The drag event
    */
-  onDragTarget(_callback: DragCallbackTarget<Datum, void>): this;
+  onDragTarget: (
+    dragNode: HierarchyNode<Datum>,
+    targetNode: HierarchyNode<Datum>,
+    event: any
+  ) => void;
 
   /**
    * Specify the callback for the "dragover" event for the target node
@@ -617,14 +625,18 @@ export class OrgChart<Datum> {
    * @param targetNode - The node that is losing the "dragover" event
    * @param dragEvent - The drag event
    */
-  outDragTarget(_callback: DragCallbackTarget<Datum, void>): this;
+  outDragTarget: (
+    dragNode: HierarchyNode<Datum>,
+    targetNode: HierarchyNode<Datum>,
+    dragEvent: any
+  ) => void;
 
   /**
    * Specifies the callback that fires when a node enters the drop zone
    *
    * @param _callback - The callback to fire
    */
-  nodeEnter(_callback: any): this;
+  nodeEnter: () => void;
 
   /**
    * Whether or not to allow the drag to start
@@ -632,28 +644,28 @@ export class OrgChart<Datum> {
    * @param node - The node about to be dragged
    * @param dragEvent - The drag event
    */
-  onDragFilter(callback: DragCallback<Datum, boolean>): this;
+  onDragFilter: (node: HierarchyNode<Datum>, event: any) => void;
 
   /**
    * Set the dragging node's className (defaults to 'dragging')
    *
    * @param classNameCallback - Callback that returns className of "dragging" nodes
    */
-  draggingClass(classNameCallback: any): this;
+  draggingClass: () => string;
 
   /**
    * Set the draggable node's className (defaults to 'draggable')
    *
    * @param classNameCallback - Callback that returns className of "draggable" nodes
    */
-  draggableClass(classNameCallback: any): this;
+  draggableClass: () => string;
 
   /**
    * Set the droppable node's className
    *
    * @param classNameCallback - Callback that returns className of "droppable" nodes
    */
-  droppableClass(classNameCallback: any): this;
+  droppableClass: () => string;
 
   /**
    * Load Paging Nodes

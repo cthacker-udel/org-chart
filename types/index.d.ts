@@ -548,9 +548,9 @@ export class OrgChart<Datum> {
   /**
    * Enables the drag and drop dependent on the node being selected
    *
-   * @param node - An representation of a node within the chart
+   * @param node - Callback that provides a boolean
    */
-  enableDragDrop(node: HierarchyNode<Datum>): this;
+  enableDragDrop(booleanCallback: any): this;
 
   /**
    * Specify the callback that fires when the user begins "dragging" on a node

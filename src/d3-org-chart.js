@@ -43,6 +43,7 @@ export class OrgChart {
       dragStartX: null,
       dragStartY: null,
       isDragStart: false,
+      debug: false,
 
       /*  INTENDED FOR PUBLIC OVERRIDE */
 
@@ -2346,6 +2347,10 @@ export class OrgChart {
 
     d3.select(element).classed(attrs.draggingClass(), true);
 
+    if (attrs.debug) {
+      console.log("[DEBUG] onDragStart");
+    }
+
     attrs.onDragStart.apply(element, [node, dragEvent]);
   }
 
@@ -2427,11 +2432,19 @@ export class OrgChart {
     );
 
     if (lastTarget) {
+      if (attrs.debug) {
+        console.log("[DEBUG] outDragTarget");
+      }
+
       attrs.outDragTarget.apply(element, [
         attrs.dragNode,
         lastTarget,
         dragEvent,
       ]);
+    }
+
+    if (attrs.debug) {
+      console.log("[DEBUG] onDragTarget");
     }
 
     attrs.onDragTarget.apply(element, [

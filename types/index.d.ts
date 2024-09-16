@@ -26,6 +26,11 @@ export interface StatePublic<Datum> {
    * Id for event handling
    */
   id: string;
+
+  /**
+   * Display debugging info
+   */
+  debug?: boolean;
   /**
    * Whether chart is drawn for the first time
    */

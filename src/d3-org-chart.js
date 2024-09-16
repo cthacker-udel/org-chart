@@ -2358,6 +2358,10 @@ export class OrgChart {
     const attrs = this.getChartState();
     if (!attrs.dragNode) return;
 
+    if (attrs.debug) {
+      console.log("[DEBUG] in `drag`");
+    }
+
     const g = d3.select(element);
 
     // This condition is designed to run at the start of a drag only

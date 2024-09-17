@@ -1361,12 +1361,24 @@ export class OrgChart {
             );
           })
           .on("start", function (dragEvent, node) {
+            if (attrs.debug) {
+              console.log("...firing start");
+            }
+
             self.dragStart(this, dragEvent, node);
           })
           .on("drag", function (dragEvent) {
+            if (attrs.debug) {
+              console.log("...firing drag");
+            }
+
             self.drag(this, dragEvent);
           })
           .on("end", function (dragEvent) {
+            if (attrs.debug) {
+              console.log("...firing end");
+            }
+
             self.dragEnd(this, dragEvent);
           })
       );
@@ -2359,7 +2371,7 @@ export class OrgChart {
     if (!attrs.dragNode) return;
 
     if (attrs.debug) {
-      console.log("[DEBUG] in `drag`");
+      console.log(`[DEBUG.drag] isDragStart: ${attrs.isDragStart}`);
     }
 
     const g = d3.select(element);
@@ -2430,6 +2442,15 @@ export class OrgChart {
 
     attrs.dragStartX += parseFloat(dragEvent.dx);
     attrs.dragStartY += parseFloat(dragEvent.dy);
+
+    if (attrs.debug) {
+      console.log(
+        `[DEBUG.drag] translating node to: ${
+          "translate(" + attrs.dragStartX + "," + attrs.dragStartY + ")"
+        } and added the following coords: (${dragEvent.dx}, ${dragEvent.dy})`
+      );
+    }
+
     g.attr(
       "transform",
       "translate(" + attrs.dragStartX + "," + attrs.dragStartY + ")"
@@ -2448,7 +2469,7 @@ export class OrgChart {
     }
 
     if (attrs.debug) {
-      console.log("[DEBUG] onDragTarget");
+      console.log("[DEBUG] onDragTarget", allNodes);
     }
 
     attrs.onDragTarget.apply(element, [

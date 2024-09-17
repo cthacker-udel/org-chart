@@ -30,7 +30,7 @@ export interface StatePublic<Datum> {
   /**
    * Display debugging info
    */
-  debug?: boolean;
+  debug: boolean;
   /**
    * Whether chart is drawn for the first time
    */

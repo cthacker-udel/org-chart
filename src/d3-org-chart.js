@@ -1365,6 +1365,9 @@ export class OrgChart {
               console.log("...firing start");
             }
 
+            // EXPERIMENTAL
+            select(this).raise();
+
             self.dragStart(this, dragEvent, node);
           })
           .on("drag", function (dragEvent) {
@@ -2469,7 +2472,12 @@ export class OrgChart {
     }
 
     if (attrs.debug) {
-      console.log("[DEBUG] onDragTarget", allNodes);
+      console.log(
+        "[DEBUG] onDragTarget",
+        d3.selectAll(`g.node:not(.${attrs.draggingClass()})`),
+        g,
+        d3.selectAll(`g.node`)
+      );
     }
 
     attrs.onDragTarget.apply(element, [

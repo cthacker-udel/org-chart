@@ -1349,12 +1349,25 @@ export class OrgChart {
         }
       });
 
+    if (attrs.debug) {
+      console.log("[DEBUG.update] enabledDragDrop = ", attrs.enableDragDrop());
+    }
+
     if (attrs.enableDragDrop()) {
       const self = this;
+
       nodeEnter.call(
         d3
           .drag()
           .filter(function (dragEvent, node) {
+            if (attrs.debug) {
+              console.log(
+                "[DEBUG.update] in filter call",
+                this.classList.contains(attrs.draggableClass()) &&
+                  attrs.onDragFilter.apply(this, [node, dragEvent])
+              );
+            }
+
             return (
               this.classList.contains(attrs.draggableClass()) &&
               attrs.onDragFilter.apply(this, [node, dragEvent])

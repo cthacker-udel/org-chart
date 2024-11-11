@@ -1,6 +1,6 @@
 {
   "name": "d3-org-chart-cthacker-fork",
-  "version": "3.1.102",
+  "version": "3.1.103",
   "module": "index",
   "description": "Highly customizable org chart, created with d3",
   "keywords": [
@@ -48,7 +48,7 @@
     "test": "tape 'test/**/*-test.js'",
     "prepublish": "npx uglifyjs ./build/d3-org-chart.js -c -m -o build/d3-org-chart.min.js",
     "postpublish": "zip -j build/d3-org-chart.zip -- LICENSE README.md build/d3-org-chart.js build/d3-org-chart.min.js",
-    "_publish": "npm run setup-pretest && npm run pretest && npm run prepublish && npm version patch --force && npm publish && npm run postpublish"
+    "_publish": "npm version patch --force && npm publish && npm run postpublish"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

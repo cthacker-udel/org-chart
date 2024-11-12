@@ -1,6 +1,6 @@
 {
   "name": "d3-org-chart-cthacker-fork",
-  "version": "3.1.109",
+  "version": "3.1.110",
   "module": "index",
   "description": "Highly customizable org chart, created with d3",
   "keywords": [
@@ -51,15 +51,15 @@
     "_publish": "npm version patch --force && npm publish && npm run postpublish"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "babel": "^6.23.0",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "package-preamble": "0.1",
-    "rollup": "0.27",
-    "tape": "4",
-    "uglify-js": "3"
+    "rollup": "^4.25.0",
+    "tape": "^5.9.0",
+    "uglify-js": "^3.19.3"
   },
   "dependencies": {
     "d3-array": "3",

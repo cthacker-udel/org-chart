@@ -853,19 +853,17 @@ export class OrgChart {
       ({ data }) => this.attrs.nodeId(data).toString() === existingNodeId
     )[0];
 
-    console.log("nodefound = ", nodeFound);
     if (nodeFound) {
       // Node exists
       const existingIndex = this.attrs.data.findIndex(
         (eachNode) => eachNode.id === existingNodeId
       );
 
-      console.log("index = ", existingIndex);
-      console.log(this.attrs.data[existingIndex]);
-      this.attrs.data[existingIndex].data = {
-        ...this.attrs.data[existingIndex].data,
+      this.attrs.data[existingIndex] = {
+        ...this.attrs.data[existingIndex],
         ...payload,
       };
+
       this.render();
     }
 

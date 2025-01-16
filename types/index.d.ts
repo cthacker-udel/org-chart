@@ -535,8 +535,8 @@ export class OrgChart<Datum> {
    */
   addNode(
     nodePayload: Datum & {
-      id: number | string | "child";
-      parentId: number | string;
+      id?: number | string | "child";
+      parentId?: number | string;
     }
   ): this;
 

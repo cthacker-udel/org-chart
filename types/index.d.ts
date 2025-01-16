@@ -529,9 +529,24 @@ export class OrgChart<Datum> {
 
   /**
    * This function can be invoked via chart.addNode API, and it adds node in tree at runtime
-   * @param node
+   *
+   * @param nodePayload - The node payload to add to the chart, must contain `id` field set to `'child'`, and `parentId` field which must be set to a valid `parentId`.
+   * @returns - The modified chart instance
    */
-  addNode(node: Datum): this;
+  addNode(
+    nodePayload: Datum & {
+      id: number | string | "child";
+      parentId: number | string;
+    }
+  ): this;
+
+  /**
+   * Edits the selected node, with the modified payload
+   *
+   * @param existingNodeId - The node to edit, must already exist
+   * @param payload - The payload to override the contents of the node with
+   */
+  editNode(existingNodeId: number | string, payload: Partial<Datum>): this;
 
   /**
    * This function can be invoked via chart.removeNode API, and it removes node from tree at runtime

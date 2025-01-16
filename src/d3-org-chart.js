@@ -852,25 +852,27 @@ export class OrgChart {
     const nodeFound = descendants.filter(
       ({ data }) => this.attrs.nodeId(data).toString() === existingNodeId
     )[0];
+
+    console.log("nodefound = ", nodeFound);
     if (nodeFound) {
       // Node exists
       const existingIndex = this.attrs.data.findIndex(
         (eachNode) => eachNode.id === existingNodeId
       );
+
+      console.log("index = ", existingIndex);
+      console.log(this.attrs.data[existingIndex]);
       this.attrs.data[existingIndex].data = {
         ...this.attrs.data[existingIndex].data,
         ...payload,
       };
       this.render();
     }
+
+    return this;
   }
 
-  /**
-   * This function can be invoked via chart.addNode API, and it adds node in tree at runtime
-   *
-   * @param nodePayload - The node payload to add to the chart, must contain `id` field set to `'child'`, and `parentId` field which must be set to a valid `parentId`.
-   * @returns - The modified chart instance
-   */
+  // This function can be invoked via chart.addNode API, and it adds node in tree at runtime
   addNode(nodePayload) {
     this.attrs = this.getChartState();
     if (

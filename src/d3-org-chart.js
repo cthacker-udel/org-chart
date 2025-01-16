@@ -840,16 +840,47 @@ export class OrgChart {
     return this;
   }
 
-  // This function can be invoked via chart.addNode API, and it adds node in tree at runtime
-  addNode(obj) {
+  /**
+   * Edits the selected node, with the modified payload
+   *
+   * @param existingNodeId - The node to edit, must already exist
+   * @param payload - The payload to override the contents of the node with
+   */
+  editNode(existingNodeId, payload) {
+    const root = this.attrs.generateRoot(this.attrs.data);
+    const descendants = root.descendants();
+    const nodeFound = descendants.filter(
+      ({ data }) => this.attrs.nodeId(data).toString() === existingNodeId
+    )[0];
+    if (nodeFound) {
+      // Node exists
+      const existingIndex = this.attrs.data.findIndex(
+        (eachNode) => eachNode.id === existingNodeId
+      );
+      this.attrs.data[existingIndex].data = {
+        ...this.attrs.data[existingIndex].data,
+        ...payload,
+      };
+      this.render();
+    }
+  }
+
+  /**
+   * This function can be invoked via chart.addNode API, and it adds node in tree at runtime
+   *
+   * @param nodePayload - The node payload to add to the chart, must contain `id` field set to `'child'`, and `parentId` field which must be set to a valid `parentId`.
+   * @returns - The modified chart instance
+   */
+  addNode(nodePayload) {
     this.attrs = this.getChartState();
     if (
-      obj &&
-      (this.attrs.parentNodeId(obj) == null ||
-        this.attrs.parentNodeId(obj) == this.attrs.nodeId(obj)) &&
+      nodePayload &&
+      (this.attrs.parentNodeId(nodePayload) == null ||
+        this.attrs.parentNodeId(nodePayload) ==
+          this.attrs.nodeId(nodePayload)) &&
       this.attrs.data.length == 0
     ) {
-      this.attrs.data.push(obj);
+      this.attrs.data.push(nodePayload);
       this.render();
       return this;
     }
@@ -857,24 +888,26 @@ export class OrgChart {
     const descendants = root.descendants();
     const nodeFound = descendants.filter(
       ({ data }) =>
-        this.attrs.nodeId(data).toString() === this.attrs.nodeId(obj).toString()
+        this.attrs.nodeId(data).toString() ===
+        this.attrs.nodeId(nodePayload).toString()
     )[0];
     const parentFound = descendants.filter(
       ({ data }) =>
         this.attrs.nodeId(data).toString() ===
-        this.attrs.parentNodeId(obj).toString()
+        this.attrs.parentNodeId(nodePayload).toString()
     )[0];
     if (nodeFound) {
       console.log(
         `ORG CHART - ADD - Node with id "${this.attrs.nodeId(
-          obj
+          nodePayload
         )}" already exists in tree`
       );
       return this;
     }
 
-    if (obj._centered && !obj._expanded) obj._expanded = true;
-    this.attrs.data.push(obj);
+    if (nodePayload._centered && !nodePayload._expanded)
+      nodePayload._expanded = true;
+    this.attrs.data.push(nodePayload);
 
     // Update state of nodes and redraw graph
     this.updateNodesState();

@@ -1373,7 +1373,7 @@ export class OrgChart {
       .attr("cursor", "pointer");
 
     if (!this.attrs.enableDragDrop()) {
-      nodesSelection.on("click.node", (event, node) => {
+      nodeEnter.merge(nodesSelection).on("click.node", (event, node) => {
         const { data } = node;
         if (
           [...event.srcElement.classList].includes("node-button-foreign-object")
@@ -1393,7 +1393,7 @@ export class OrgChart {
     }
 
     //  Event handler to the expand button
-    nodesSelection.on("keydown.node", (event, node) => {
+    nodeEnter.merge(nodesSelection).on("keydown.node", (event, node) => {
       const { data } = node;
       if (
         event.key === "Enter" ||
@@ -1429,7 +1429,7 @@ export class OrgChart {
     if (this.attrs.enableDragDrop()) {
       const self = this;
 
-      nodeEnter.call(
+      nodeEnter.merge(nodesSelection).call(
         d3
           .drag()
           .filter(function (dragEvent, node) {
@@ -1752,6 +1752,7 @@ export class OrgChart {
     if (d.data._pagingButton) {
       return;
     }
+
     if (this.attrs.setActiveNodeCentered) {
       d.data._centered = true;
       d.data._centeredWithDescendants = true;
